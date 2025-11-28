@@ -1,0 +1,120 @@
+/* -------- Reset -------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* -------- Background -------- */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #001f4d, #004d91, #0073e6);
+    color: #e6f2ff; /* soft light blue text */
+    padding: 20px;
+}
+
+/* -------- Container -------- */
+.container {
+    width: 420px;
+    padding: 35px 45px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(14px);
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* -------- Fade Animation -------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------- Title -------- */
+h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #ffffff; /* changed from yellow */
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* -------- Inputs -------- */
+form input {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: #f0f6ff;
+    color: #003366;
+}
+
+form input:focus {
+    border: 2px solid #00c8ff;
+}
+
+/* -------- Submit Button -------- */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: #00c8ff;
+    border: none;
+    border-radius: 8px;
+    color: #002b43;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #34dbff;
+}
+
+/* -------- Text and Links -------- */
+p {
+    margin-top: 14px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+a {
+    color: #00eaff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* -------- Flash Messages -------- */
+.success {
+    color: #2cffb3;  /* neon green success */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: #ff5c5c; /* better red */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* -------- Responsive Design -------- */
+@media (max-width: 480px) {
+    .container { width: 100%; padding: 25px 25px; }
+    h2 { font-size: 22px; }
+    form input, button { font-size: 14px; padding: 11px; }
+}

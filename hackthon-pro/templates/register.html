@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatima College • Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Fatima College • Student Registration</h2>
+
+    <!-- FLASH MESSAGE HANDLING -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- FORM START -->
+    <form action="{{ url_for('do_register') }}" method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="name" placeholder="Student Full Name" required>
+
+        <input type="email" name="email" placeholder="Student Gmail" required>
+
+        <input type="password" name="password" placeholder="Create Password" required>
+
+        <!-- PHOTO UPLOAD FIELD -->
+        <label class="upload-label">Upload Your Face Photo</label>
+        <input type="file" name="photo" accept="image/*" required class="upload-input">
+
+        <button type="submit">Register</button>
+
+        <p>Already have an account?
+            <a href="{{ url_for('login_page') }}">Login Here</a>
+        </p>
+
+    </form>
+    <!-- FORM END -->
+
+</div>
+
+</body>
+</html>

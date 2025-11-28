@@ -1,0 +1,124 @@
+/* -------- Reset -------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* -------- Background -------- */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #001f4d, #4d7ebb, #0073e6);
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+  text-align: center;
+  color: #ffffff;
+  padding: 20px;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* -------- Hero Section -------- */
+.container {
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
+  padding-top: 70px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 45px;
+  line-height: 1.3;
+  animation: fadeIn 1s ease-in-out;
+}
+
+h1 span {
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffcc00;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0px); }
+}
+
+/* -------- Buttons -------- */
+.button-group {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 36px;
+  font-size: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.35s;
+  cursor: pointer;
+}
+
+.btn.main {
+  background: #ffffff;
+  color: #001f4d;
+  font-weight: 700;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
+}
+
+.btn.main:hover {
+  background: #f2f2f2;
+  transform: translateY(-6px);
+}
+
+.btn.outline {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.btn.outline:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-6px);
+}
+
+/* -------- Footer -------- */
+footer {
+  padding: 18px 0;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
+/* -------- Responsive -------- */
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  h1 { font-size: 32px; }
+  .btn { font-size: 16px; width: 100%; }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  h1 { font-size: 40px; }
+  .container { padding-top: 90px; }
+}
+
+/* Large displays */
+@media (min-width: 1200px) {
+  h1 { font-size: 55px; }
+}

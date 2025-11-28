@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Capture Attendance</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0a2a43, #0077ff);
+        color: #fff;
+        overflow: hidden;
+    }
+
+    .card {
+        background: #ffffff10;
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 30px;
+        width: 90%;
+        max-width: 380px;
+        box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 5px;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 14px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        opacity: 0.8;
+    }
+
+    video {
+        border-radius: 12px;
+        border: 3px solid #00d4ff;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background: #00d4ff;
+        border: none;
+        border-radius: 10px;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #002b43;
+        transition: 0.3s ease;
+    }
+
+    button:hover {
+        background: #ffffff;
+        color: #000;
+        transform: translateY(-2px);
+    }
+
+    footer {
+        margin-top: 15px;
+        font-size: 12px;
+        opacity: 0.6;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Mark Your Attendance</h2>
+    <p>Align your face & ID card<br>then click submit</p>
+
+    <video id="cam" autoplay playsinline></video>
+
+    <button onclick="capture()">Submit Attendance</button>
+
+    <footer>Fatima College • Smart Attendance</footer>
+</div>
+
+<script>
+let cam = document.getElementById("cam");
+
+// OPEN CAMERA
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }})
+.then(stream => cam.srcObject = stream);
+
+function capture() {
+    const canvas = document.createElement("canvas");
+    canvas.width = cam.videoWidth;
+    canvas.height = cam.videoHeight;
+    canvas.getContext("2d").drawImage(cam, 0, 0);
+
+    const img = canvas.toDataURL("image/jpeg", 0.9);
+
+    fetch("/mark_attendance", {
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify({ email:"{{ email }}", photo:img })
+    })
+    .then(r => r.json())
+    .then(d => {
+        alert(d.message);
+        window.location.href = d.redirect;
+   // <--- UPDATED HERE
+    });
+}
+</script>
+
+</body>
+</html>

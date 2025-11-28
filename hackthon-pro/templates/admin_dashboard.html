@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Attendance Dashboard</title>
+
+<style>
+    body {
+        font-family: Poppins, Arial, sans-serif;
+        background: linear-gradient(135deg, #002b57, #0066ff);
+        margin: 0;
+        padding: 0;
+        color: #fff;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 15px 25px;
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .navbar h2 { margin: 0; }
+    .navbar a {
+        color: #fff;
+        text-decoration: none;
+        background: #ff4757;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: .3s;
+    }
+    .navbar a:hover { background: #ff212f; }
+
+    /* DASHBOARD TITLE */
+    .container {
+        margin: 40px auto;
+        width: 90%;
+        max-width: 1100px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 30px;
+        letter-spacing: 1px;
+    }
+
+    /* TABLE */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        color: #fff;
+    }
+
+    th {
+        background: rgba(0,0,0,0.3);
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    tr:nth-child(even) {
+        background: rgba(255,255,255,0.08);
+    }
+
+    tr:hover {
+        background: rgba(255,255,255,0.25);
+        transition: .3s;
+    }
+
+    img {
+        border-radius: 8px;
+        border: 2px solid #fff;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+        table, th, td { font-size: 12px; }
+        img { width: 50px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Admin Dashboard</h2>
+    <a href="/admin/logout">Logout</a>
+</div>
+
+<div class="container">
+    <h2>Attendance Records</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Captured Photo</th>
+            <th>Timestamp</th>
+        </tr>
+
+        {% for row in data %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.email }}</td>
+            <td><img src="{{ row.photo }}" width="80"></td>
+            <td>{{ row.time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
